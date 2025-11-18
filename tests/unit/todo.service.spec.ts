@@ -49,6 +49,6 @@ describe('TodoService', () => {
     svc.create("Tarea 3");
     svc.toggle(tarea1.id);
     const stats = svc.stats();
-    expect(stats).toEqual({ total: 4, completed: 1, pending: 2 });
+    expect(stats).toEqual({ total: 3, completed: 1, pending: 2 });
   })
 })
