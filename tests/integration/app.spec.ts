@@ -16,6 +16,7 @@ describe('Todo API', () => {
     expect(res.status).toBe(201); // código HTTP correcto
     expect(res.body).toHaveProperty('id'); // devuelve un id
     expect(res.body.title).toBe('Probar API');
+    await request(app).delete(`/todos/${res.body.id}`); 
   });
 
   // Flujo completo: crear → listar → toggle → borrar
@@ -50,6 +51,7 @@ describe('Todo API', () => {
   });
 
   it("GET /todos/stats devuelve los totales", async () => {
+
   // Creamos datos de prueba
   await request(app).post("/todos").send({ title: "Letra: A" });
   const b = await request(app).post("/todos").send({ title: "Letra: B" });
@@ -65,6 +67,6 @@ describe('Todo API', () => {
   console.log(res.body.total)
 
   expect(res.status).toBe(200);
-  expect(res.body).toEqual({ total: 4, completed: 1, pending: 3 });
+  expect(res.body).toEqual({ total: 3, completed: 1, pending: 2 });
 });
 });

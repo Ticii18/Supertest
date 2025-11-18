@@ -1,4 +1,5 @@
 
+import { execPath } from 'process';
 import { TodoService } from '../../src/services/todo.service';
 describe('TodoService', () => {
   let svc: TodoService;
@@ -41,11 +42,13 @@ describe('TodoService', () => {
     expect(() => svc.remove('nope')).toThrow('Todo not found');
   });
 
-  // describe("TodoService.stats()", ()=>{
-  //   it("devuelve totales correctos (total, completed, pending)",()=>{
-  //     const svc= new TodoService();
-  //     const stats= svc.stats();
-  //     expect(stats).toEqual({ total: 3, completed: 1, pending: 2 });
-  //   })
-  // })
-});
+  it("devuelve totales correctos (total, completed, pending)", () => {
+    const svc = new TodoService();
+    const tarea1 = svc.create("Tarea 1");
+    svc.create("Tarea 2");
+    svc.create("Tarea 3");
+    svc.toggle(tarea1.id);
+    const stats = svc.stats();
+    expect(stats).toEqual({ total: 4, completed: 1, pending: 2 });
+  })
+})

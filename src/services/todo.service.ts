@@ -39,7 +39,7 @@ export class TodoService {
   clear(): void {
     this.todos = [];
   }
-
+  
   stats() {
     const total = this.todos.length;
     const completed = this.todos.filter(x => x.completed).length;
